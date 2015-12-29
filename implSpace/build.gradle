@@ -1,0 +1,15 @@
+group 'jmp'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+
+sourceCompatibility = 1.7
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile (project(':runner'))
+    compile 'log4j:log4j:1.2.17'
+}
