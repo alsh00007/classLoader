@@ -1,20 +1,18 @@
 package com.jmp.classloader;
 
 
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
-
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.lang.reflect.Method;
 import java.net.URL;
 import java.net.URLClassLoader;
+
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 
 public class Runner {
 
     static final Logger logger = LogManager.getLogger(Runner.class.getName());
-    private Hello   hello;
-    private Class<?> clazz;
+    private Hello       hello;
 
     public static void main(String[] args) throws Exception {
 
@@ -24,8 +22,6 @@ public class Runner {
     private void readConsole() throws Exception {
 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-
-
 
         while (true) {
            logger.info("Enter reload for 'reload' implementation and 'say', 'exit' for exit.");
@@ -45,7 +41,7 @@ public class Runner {
         URL[] classLoaderUrls = new URL[]{ new URL(
                 "file:///home/aliaksandr/implWorld-1.0-SNAPSHOT.jar") };
         URLClassLoader urlClassLoader = new URLClassLoader(classLoaderUrls);
-        clazz = urlClassLoader.loadClass("classloader.impl.HelloImpl");
+        Class clazz = urlClassLoader.loadClass("classloader.impl.HelloImpl");
         hello = (Hello) clazz.getConstructor().newInstance();
     }
 }
