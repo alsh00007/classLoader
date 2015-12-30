@@ -13,7 +13,7 @@ import java.net.URLClassLoader;
 public class Runner {
 
     static final Logger logger = LogManager.getLogger(Runner.class.getName());
-    private Object   instance;
+    private Hello   hello;
     private Class<?> clazz;
 
     public static void main(String[] args) throws Exception {
@@ -33,8 +33,7 @@ public class Runner {
             if ("reload".equals(s)) {
                 reload();
             } else if ("say".equals(s)) {
-                Method method = clazz.getMethod("sayHello");
-                method.invoke(instance);
+                hello.sayHello();
             } else if ("exit".equals(s)) {
                 return;
             }
@@ -47,6 +46,6 @@ public class Runner {
                 "file:///home/aliaksandr/implWorld-1.0-SNAPSHOT.jar") };
         URLClassLoader urlClassLoader = new URLClassLoader(classLoaderUrls);
         clazz = urlClassLoader.loadClass("classloader.impl.HelloImpl");
-        instance = clazz.getConstructor().newInstance();
+        hello = (Hello) clazz.getConstructor().newInstance();
     }
 }

@@ -10,6 +10,6 @@ public class HelloImpl implements Hello {
     public void sayHello() {
 
         logger.info("Hello world!");
-
+       // logger.info("Hello space!");
     }
 }
